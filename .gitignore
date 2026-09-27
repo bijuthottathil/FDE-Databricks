@@ -1,0 +1,11 @@
+.databricks
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+bin/
+
+# Documentation: only the README and the quick installation steps are published
+*.md
+!README.md
+!INSTALLATION_STEPS.md

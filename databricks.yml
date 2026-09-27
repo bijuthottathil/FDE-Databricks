@@ -1,0 +1,23 @@
+# This is a Declarative Automation Bundle definition for medical_fde.
+# The Databricks extension requires databricks.yml configuration file.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+
+bundle:
+  name: medical_fde
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-9a344d01-02c5.cloud.databricks.com
+      root_path: /Workspace/Users/btucker5543@gmail.com/Databricks/FDE-Medical
+
+  ## Optionally, there could be 'staging' or 'prod' targets here.
+  #
+  # prod:
+  #   workspace:
+  #     host: https://dbc-9a344d01-02c5.cloud.databricks.com

@@ -1,0 +1,3 @@
+gradio==6.28.0
+databricks-sdk
+langgraph>=1.1,<2

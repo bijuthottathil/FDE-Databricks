@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1528 1134" width="1528" height="1134" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif">
+<rect width="1528" height="1134" fill="#f8fafc"/>
+<text x="30" y="40" font-size="22" font-weight="700" fill="#0f172a">Project folder structure - what each file is for</text>
+<text x="30" y="62" font-size="13" fill="#64748b">Numbered folders are run in order (Databricks Connect scripts); app/ is deployed as a Databricks App; colours group related steps.</text>
+<rect x="30" y="92" width="720" height="172" rx="12" fill="#ffffff" stroke="#475569" stroke-width="1.6"/>
+<path d="M30 104 a12 12 0 0 1 12 -12 h696 a12 12 0 0 1 12 12 v42 h-720 z" fill="#475569"/>
+<text x="48" y="116" font-size="16" font-weight="700" fill="#ffffff" font-family="ui-monospace,Menlo,Consolas,monospace">medical_fde/  (project root)</text>
+<text x="48" y="135" font-size="12" fill="#ffffffcc">config, docs and dependency pins</text>
+<text x="48" y="168" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">databricks.yml</text>
+<text x="330" y="168" font-size="12" fill="#475569">Bundle definition: dev target, includes resources/</text>
+<text x="48" y="192" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">pyproject.toml</text>
+<text x="330" y="192" font-size="12" fill="#475569">Python 3.12 + pinned dev dependencies (uv)</text>
+<text x="48" y="216" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">README.md</text>
+<text x="330" y="216" font-size="12" fill="#475569">This document (supersedes README.py)</text>
+<text x="48" y="240" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">README.py</text>
+<text x="330" y="240" font-size="12" fill="#475569">Original planning notebook - out of date</text>
+<rect x="30" y="292" width="720" height="100" rx="12" fill="#ffffff" stroke="#7c3aed" stroke-width="1.6"/>
+<path d="M30 304 a12 12 0 0 1 12 -12 h696 a12 12 0 0 1 12 12 v42 h-720 z" fill="#7c3aed"/>
+<text x="48" y="316" font-size="16" font-weight="700" fill="#ffffff" font-family="ui-monospace,Menlo,Consolas,monospace">00_governance/</text>
+<text x="48" y="335" font-size="12" fill="#ffffffcc">Step 1 - who may see what</text>
+<text x="48" y="368" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">01_unity_catalog_tags_and_abac.py</text>
+<text x="330" y="368" font-size="12" fill="#475569">Catalog, tags, groups, ABAC row filters, masks</text>
+<rect x="30" y="420" width="720" height="148" rx="12" fill="#ffffff" stroke="#0f766e" stroke-width="1.6"/>
+<path d="M30 432 a12 12 0 0 1 12 -12 h696 a12 12 0 0 1 12 12 v42 h-720 z" fill="#0f766e"/>
+<text x="48" y="444" font-size="16" font-weight="700" fill="#ffffff" font-family="ui-monospace,Menlo,Consolas,monospace">01_ingestion/</text>
+<text x="48" y="463" font-size="12" fill="#ffffffcc">Step 2 - data in, tagged</text>
+<text x="48" y="496" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">01_dlt_bronze_silver_gold.py</text>
+<text x="330" y="496" font-size="12" fill="#475569">DLT pipeline: bronze &gt; silver &gt; gold</text>
+<text x="48" y="520" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">02_pii_phi_autotagger.py</text>
+<text x="330" y="520" font-size="12" fill="#475569">Presidio + rules tag columns; sets unit_key/row_scope</text>
+<text x="48" y="544" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">03_operational_reference_tables.py</text>
+<text x="330" y="544" font-size="12" fill="#475569">Sample facilities_info and policy_docs (non-PHI)</text>
+<rect x="30" y="596" width="720" height="124" rx="12" fill="#ffffff" stroke="#0f766e" stroke-width="1.6"/>
+<path d="M30 608 a12 12 0 0 1 12 -12 h696 a12 12 0 0 1 12 12 v42 h-720 z" fill="#0f766e"/>
+<text x="48" y="620" font-size="16" font-weight="700" fill="#ffffff" font-family="ui-monospace,Menlo,Consolas,monospace">02_vector_search/</text>
+<text x="48" y="639" font-size="12" fill="#ffffffcc">Step 3 - retrieval store</text>
+<text x="48" y="672" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">01_create_indexes.py</text>
+<text x="330" y="672" font-size="12" fill="#475569">Endpoint, chunk tables, Delta Sync indexes</text>
+<text x="48" y="696" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">02_populate_chunks.py</text>
+<text x="330" y="696" font-size="12" fill="#475569">Builds chunks from tables and syncs indexes</text>
+<rect x="30" y="748" width="720" height="100" rx="12" fill="#ffffff" stroke="#b45309" stroke-width="1.6"/>
+<path d="M30 760 a12 12 0 0 1 12 -12 h696 a12 12 0 0 1 12 12 v42 h-720 z" fill="#b45309"/>
+<text x="48" y="772" font-size="16" font-weight="700" fill="#ffffff" font-family="ui-monospace,Menlo,Consolas,monospace">03_routing/</text>
+<text x="48" y="791" font-size="12" fill="#ffffffcc">Original router notebook (not used by the app)</text>
+<text x="48" y="824" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">01_query_classifier_router.py</text>
+<text x="330" y="824" font-size="12" fill="#475569">ML-classifier router; the app uses app/routing.py</text>
+<rect x="30" y="876" width="720" height="124" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="1.6"/>
+<path d="M30 888 a12 12 0 0 1 12 -12 h696 a12 12 0 0 1 12 12 v42 h-720 z" fill="#2563eb"/>
+<text x="48" y="900" font-size="16" font-weight="700" fill="#ffffff" font-family="ui-monospace,Menlo,Consolas,monospace">04_serving/</text>
+<text x="48" y="919" font-size="12" fill="#ffffffcc">Step 4 - the two models</text>
+<text x="48" y="952" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">01_private_llm_endpoint.py</text>
+<text x="330" y="952" font-size="12" fill="#475569">Registers Qwen2.5-1.5B; creates hospital-private-llm</text>
+<text x="48" y="976" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">02_external_model_endpoint.py</text>
+<text x="330" y="976" font-size="12" fill="#475569">Creates hospital-external-openai (key from secret)</text>
+<rect x="778" y="92" width="720" height="100" rx="12" fill="#ffffff" stroke="#dc2626" stroke-width="1.6"/>
+<path d="M778 104 a12 12 0 0 1 12 -12 h696 a12 12 0 0 1 12 12 v42 h-720 z" fill="#dc2626"/>
+<text x="796" y="116" font-size="16" font-weight="700" fill="#ffffff" font-family="ui-monospace,Menlo,Consolas,monospace">05_guardrails/</text>
+<text x="796" y="135" font-size="12" fill="#ffffffcc">Step 5 - endpoint-level limits</text>
+<text x="796" y="168" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">01_ai_gateway_guardrails.py</text>
+<text x="1078" y="168" font-size="12" fill="#475569">AI Gateway: PII block, rate limits (partly unsupported)</text>
+<rect x="778" y="220" width="720" height="100" rx="12" fill="#ffffff" stroke="#0369a1" stroke-width="1.6"/>
+<path d="M778 232 a12 12 0 0 1 12 -12 h696 a12 12 0 0 1 12 12 v42 h-720 z" fill="#0369a1"/>
+<text x="796" y="244" font-size="16" font-weight="700" fill="#ffffff" font-family="ui-monospace,Menlo,Consolas,monospace">06_monitoring/</text>
+<text x="796" y="263" font-size="12" fill="#ffffffcc">Step 6 - audit and monitoring</text>
+<text x="796" y="296" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">01_lakehouse_monitoring.py</text>
+<text x="1078" y="296" font-size="12" fill="#475569">audit.chat_log, monitoring views, access review</text>
+<rect x="778" y="348" width="720" height="124" rx="12" fill="#ffffff" stroke="#be123c" stroke-width="1.6"/>
+<path d="M778 360 a12 12 0 0 1 12 -12 h696 a12 12 0 0 1 12 12 v42 h-720 z" fill="#be123c"/>
+<text x="796" y="372" font-size="16" font-weight="700" fill="#ffffff" font-family="ui-monospace,Menlo,Consolas,monospace">07_compliance/</text>
+<text x="796" y="391" font-size="12" fill="#ffffffcc">Step 7 - evidence</text>
+<text x="796" y="424" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">01_mlflow_tracking.py</text>
+<text x="1078" y="424" font-size="12" fill="#475569">MLflow: prompt versions, endpoint &gt; model lineage</text>
+<text x="796" y="448" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">02_compliance_log.py</text>
+<text x="1078" y="448" font-size="12" fill="#475569">Append-only hash-chained log + chain verification</text>
+<rect x="778" y="500" width="720" height="292" rx="12" fill="#ffffff" stroke="#ea580c" stroke-width="1.6"/>
+<path d="M778 512 a12 12 0 0 1 12 -12 h696 a12 12 0 0 1 12 12 v42 h-720 z" fill="#ea580c"/>
+<text x="796" y="524" font-size="16" font-weight="700" fill="#ffffff" font-family="ui-monospace,Menlo,Consolas,monospace">app/  (Databricks App: hospital-chat)</text>
+<text x="796" y="543" font-size="12" fill="#ffffffcc">Step 8 - what users touch</text>
+<text x="796" y="576" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">ui.py</text>
+<text x="1078" y="576" font-size="12" fill="#475569">Gradio UI, /health /status /whoami (entry point)</text>
+<text x="796" y="600" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">main.py</text>
+<text x="1078" y="600" font-size="12" fill="#475569">Backend: retrieval, audit + compliance writers, jobs</text>
+<text x="796" y="624" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">pipeline.py</text>
+<text x="1078" y="624" font-size="12" fill="#475569">The request flow as a LangGraph graph</text>
+<text x="796" y="648" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">guards.py</text>
+<text x="1078" y="648" font-size="12" fill="#475569">Guardrails: leak check, injection, grounding, hash chain</text>
+<text x="796" y="672" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">routing.py</text>
+<text x="1078" y="672" font-size="12" fill="#475569">In-app router: keyword intents + UC tag registry</text>
+<text x="796" y="696" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">llm.py</text>
+<text x="1078" y="696" font-size="12" fill="#475569">Client for hospital-private-llm (retries, no fallback)</text>
+<text x="796" y="720" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">app.yaml</text>
+<text x="1078" y="720" font-size="12" fill="#475569">Run command + env (warehouse, endpoints, tracing off)</text>
+<text x="796" y="744" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">requirements.txt</text>
+<text x="1078" y="744" font-size="12" fill="#475569">gradio, databricks-sdk, langgraph</text>
+<text x="796" y="768" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">chat_app.py</text>
+<text x="1078" y="768" font-size="12" fill="#475569">Legacy Flask app from the plan - unused</text>
+<rect x="778" y="820" width="720" height="124" rx="12" fill="#ffffff" stroke="#475569" stroke-width="1.6"/>
+<path d="M778 832 a12 12 0 0 1 12 -12 h696 a12 12 0 0 1 12 12 v42 h-720 z" fill="#475569"/>
+<text x="796" y="844" font-size="16" font-weight="700" fill="#ffffff" font-family="ui-monospace,Menlo,Consolas,monospace">resources/</text>
+<text x="796" y="863" font-size="12" fill="#ffffffcc">Asset Bundle resources</text>
+<text x="796" y="896" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">ingestion_pipeline.yml</text>
+<text x="1078" y="896" font-size="12" fill="#475569">Serverless DLT pipeline &gt; schema clinical</text>
+<text x="796" y="920" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">hospital_chat_app.yml</text>
+<text x="1078" y="920" font-size="12" fill="#475569">App: warehouse, 2 endpoints, sql user scope</text>
+<rect x="778" y="972" width="720" height="124" rx="12" fill="#ffffff" stroke="#16a34a" stroke-width="1.6"/>
+<path d="M778 984 a12 12 0 0 1 12 -12 h696 a12 12 0 0 1 12 12 v42 h-720 z" fill="#16a34a"/>
+<text x="796" y="996" font-size="16" font-weight="700" fill="#ffffff" font-family="ui-monospace,Menlo,Consolas,monospace">tests/</text>
+<text x="796" y="1015" font-size="12" fill="#ffffffcc">43 offline tests</text>
+<text x="796" y="1048" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">test_guardrails.py</text>
+<text x="1078" y="1048" font-size="12" fill="#475569">Guards, routing, hash chain, redaction</text>
+<text x="796" y="1072" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">test_pipeline.py</text>
+<text x="1078" y="1072" font-size="12" fill="#475569">Graph == original pipeline; progress; tracing off</text>
+</svg>

@@ -1,0 +1,10 @@
+resources:
+  pipelines:
+    hospital_ingestion:
+      name: hospital_ingestion
+      catalog: hospital_lakehouse
+      schema: clinical
+      serverless: true
+      libraries:
+        - notebook:
+            path: ../01_ingestion/01_dlt_bronze_silver_gold.py

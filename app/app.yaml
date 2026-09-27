@@ -1,0 +1,12 @@
+command: ["python", "ui.py"]
+env:
+  - name: WAREHOUSE_ID
+    valueFrom: sql-warehouse
+  - name: PRIVATE_LLM_ENDPOINT
+    valueFrom: private-llm
+  - name: GENERAL_MODEL_ENDPOINT
+    valueFrom: external-llm
+  - name: LANGSMITH_TRACING
+    value: "false"
+  - name: LANGCHAIN_TRACING_V2
+    value: "false"

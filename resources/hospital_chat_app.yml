@@ -1,0 +1,21 @@
+resources:
+  apps:
+    hospital_chat:
+      name: hospital-chat
+      description: Hospital chat assistant. PHI questions go to the private LLM endpoint; general questions go to the external OpenAI endpoint.
+      source_code_path: ../app
+      user_api_scopes:
+        - sql
+      resources:
+        - name: sql-warehouse
+          sql_warehouse:
+            id: 73c6a216d830bde0
+            permission: CAN_USE
+        - name: private-llm
+          serving_endpoint:
+            name: hospital-private-llm
+            permission: CAN_QUERY
+        - name: external-llm
+          serving_endpoint:
+            name: hospital-external-openai
+            permission: CAN_QUERY
