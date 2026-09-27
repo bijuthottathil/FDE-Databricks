@@ -458,55 +458,7 @@ Verify the hash chain by running `07_compliance/02_compliance_log.py` ("N rows c
 `<app>/status` (private model state), `<app>/whoami` (token scopes — never the token). Refresh the monitoring views by
 re-running `06_monitoring/01_lakehouse_monitoring.py`. App logs (`<app>/logz`) need a signed-in browser.
 
-## Deviations from the original design
 
-| Original plan | What was built | Why |
-|---|---|---|
-| Fine-tuned model on a dedicated GPU pool, no scale-to-zero | Base Qwen2.5-1.5B on CPU **Small**, scale-to-zero | No GPU / fine-tune on Free Edition; Medium exceeds the free quota |
-| Azure OpenAI with a BAA | OpenAI `gpt-4o-mini` | No Azure resource. **No BAA** — non-PHI traffic only |
-| LangGraph router + ML intent classifier endpoint | Keyword router in-app; LangGraph used for the **request pipeline** | A classifier endpoint would send raw (possibly PHI) text to a hosted model |
-| Vector Search for retrieval | In-process ranking over the chunk table | Embedding a PHI question would call a hosted embedding endpoint |
-| Inference tables, AI Gateway guardrails on both endpoints | OpenAI endpoint: PII and safety guardrails, no inference table. Private endpoint: telemetry configured (no rows yet), no guardrails. Own audit logs + in-app guards are the verified trail | Free Edition supports each feature on only one endpoint type |
-| Copy the weights to local disk, then log the model | Log straight from the volume path | A 3.1 GB download through the Files API timed out |
-| Grants to `clinical_staff` / `operational_staff` groups | Not possible | Unity Catalog won't take grants/policies on workspace-local groups |
-| `EXCEPT` clause in the ABAC policy | Exemptions inside the filter function via `is_member()` | Same reason |
-| Flask app importing the whole repo | Self-contained Gradio app | Databricks Apps deploys only the app folder |
-
-## Limitations
-
-- **Not for real PHI.** Free Edition: no BAA, no compliance guarantees, no customer-managed boundary.
-- **Weak private model** (1.5B, CPU): answers are brief and slow; a cold start can take minutes.
-- **Keyword routing and word-overlap retrieval** work at 14 patients, not at scale. Unusual phrasing can misroute
-  (it fails toward PHI).
-- **Identifier check is rule-based:** it only knows patients already in the table; new names, misspellings beyond the
-  fuzzy threshold, and free-text clinical details can pass. Grounding only checks digit-bearing facts.
-- **Injection screening is pattern matching** — a determined attacker can bypass it.
-- **The compliance log is tamper-evident, not tamper-proof**, cannot prove the newest rows weren't truncated, and its
-  hash chain assumes a single app instance. Retention requires temporarily unsetting append-only.
-- **The AI Gateway filters are probabilistic:** a name and SSN alone got through the PII filter, and the safety
-  filter blocks the ICU bed record as a false positive.
-- **Private-endpoint telemetry is unproven:** configured and tables created, but no rows arrived in testing.
-- **The count answer** counts patients with an encounter on record — the data has no discharge status.
-- **Unit-level filtering** relies on `staff_assignments`; there is no real staffing feed.
-- Audit events before the audit-write fix (blocked / denied / failed) were not recorded.
-
-## Troubleshooting
-
-| Symptom | Cause / fix |
-|---|---|
-| Group changes have no effect | Membership is cached ~4 min. Wait before testing or re-running the autotagger |
-| Autotagger skips a table | It returned no rows (empty or filtered). Ensure the running identity is in `phi_service_principals` |
-| "Your session doesn't include the SQL permission" | Sign in from a private window and approve the `sql` scope |
-| General questions fail with `INSUFFICIENT_PERMISSIONS … USE CATALOG` | Re-grant the app service principal `USE CATALOG` on `hospital_lakehouse` |
-| `Private model call failed: PermissionDenied` | The app's service principal lacks `CAN_QUERY` on the endpoint (typical after a reinstall); grant it (`INSTALLATION_STEPS.md` 15b) |
-| "The AI Gateway's safety filter blocked this question" | A gateway guardrail refused it; rephrase. The ICU bed question is a known false positive |
-| Endpoint deploy fails with `SCHEMA_DOES_NOT_EXIST … audit` | Its telemetry writes to `audit`; create the schema, then redeploy |
-| OpenAI endpoint returns `ip_not_authorized` | The OpenAI project has an IP allowlist; use a project without one |
-| First PHI answer takes minutes | Private endpoint scaling from zero; the UI shows progress |
-| `Quota Exceeded … provisioned concurrency` | Use a **Small** serving workload |
-| `databricks apps logs` says OAuth token not supported | The CLI profile uses a PAT; use `<app>/logz` in a browser or log in with OAuth |
-| `uv pip install` picks ancient package versions | Run it outside the project directory, or the project's version constraints apply |
-| Blocked/denied rows missing from the audit log | Fixed (NULL timings were cast from the text "None"); older events are lost |
 
 ## Roadmap
 1. **In-boundary embeddings** and real vector search for PHI retrieval.
