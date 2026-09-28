@@ -120,8 +120,8 @@ def classify_intent(query: str) -> str:
 
 # COMMAND ----------
 
-PHI_MODEL_ENDPOINT = "hospital-private-llm"          # 04_serving/01_private_llm_endpoint.py
-GENERAL_MODEL_ENDPOINT = "hospital-external-openai"  # 04_serving/02_external_model_endpoint.py
+PHI_MODEL_ENDPOINT = "hospital-private-llm"          # 04_serving/01_private_llm_endpoint.ipynb
+GENERAL_MODEL_ENDPOINT = "hospital-external-openai"  # 04_serving/02_external_model_endpoint.ipynb
 
 PHI_VECTOR_INDEX = "hospital_lakehouse.clinical.phi_chunks_index"
 GENERAL_VECTOR_INDEX = "hospital_lakehouse.operational.general_chunks_index"

@@ -1,5 +1,5 @@
 """Client for the private LLM: the `hospital-private-llm` Model Serving endpoint, which runs a small
-open-weight model inside this workspace (see 04_serving/01_private_llm_endpoint.py).
+open-weight model inside this workspace (see 04_serving/01_private_llm_endpoint.ipynb).
 
 PHI prompts and retrieved records go only to this endpoint. There is deliberately no fallback to any other
 model: if it fails, the request fails."""

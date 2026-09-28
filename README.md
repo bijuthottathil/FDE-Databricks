@@ -123,8 +123,8 @@ medical_fde/
 │   └── 01_query_classifier_router.py       # original ML-classifier router (app uses app/routing.py)
 │
 ├── 04_serving/
-│   ├── 01_private_llm_endpoint.py          # register Qwen2.5-1.5B, create hospital-private-llm
-│   └── 02_external_model_endpoint.py       # create hospital-external-openai (key from secret)
+│   ├── 01_private_llm_endpoint.ipynb       # register Qwen2.5-1.5B, create hospital-private-llm
+│   └── 02_external_model_endpoint.ipynb    # create hospital-external-openai (key from secret)
 │
 ├── 05_guardrails/
 │   └── 01_ai_gateway_guardrails.py         # AI Gateway guardrails + private-endpoint telemetry
@@ -182,8 +182,8 @@ command in [Deploying from scratch](#deploying-from-scratch)). Most are safe to 
 | `02_vector_search/01_create_indexes.py` | Create the Vector Search endpoint, chunk tables and indexes | Starts builds without waiting; builds the PHI index only once `phi_chunks_vs_source` exists; skips what exists |
 | `02_vector_search/02_populate_chunks.py` | Rebuild `phi_chunks` / `general_chunks` and sync indexes | Run after any data change — **the app reads these tables** |
 | `03_routing/01_query_classifier_router.py` | Reference for the original classifier design | Not used by the deployed app |
-| `04_serving/01_private_llm_endpoint.py` | Register the model in Unity Catalog and create or update `hospital-private-llm` | Run **in the workspace** (needs the weights in the volume and the `audit` schema); slow — builds a serving image |
-| `04_serving/02_external_model_endpoint.py` | Create `hospital-external-openai` | Run once, after `databricks secrets put-secret hospital_chat openai_api_key` |
+| `04_serving/01_private_llm_endpoint.ipynb` | Register the model in Unity Catalog and create or update `hospital-private-llm` | Run **in the workspace** (needs the weights in the volume and the `audit` schema); slow — builds a serving image |
+| `04_serving/02_external_model_endpoint.ipynb` | Create `hospital-external-openai` | Run once, after `databricks secrets put-secret hospital_chat openai_api_key` |
 | `05_guardrails/01_ai_gateway_guardrails.py` | Apply AI Gateway guardrails, limits and usage tracking; enable private-endpoint telemetry | Run after the endpoints are `READY`; prints what took effect and what Free Edition refuses |
 | `06_monitoring/01_lakehouse_monitoring.py` | Create `audit.chat_log` and the monitoring views, show the access review | Run once; re-run to refresh views |
 | `07_compliance/01_mlflow_tracking.py` | Log prompt versions and endpoint→model lineage to MLflow | Run after prompt or model changes |
@@ -377,8 +377,8 @@ Edition allows one serverless job at a time. In outline:
 5. **Reference tables**, and assign the test clinician a unit in `staff_assignments`.
 6. **Autotagger**, then **7. governance again**, which attaches the row filters and masks.
 8. **Chunk tables and general index**, **9. fill the chunks**, **10. the unfiltered PHI copy**, **11. the PHI index**.
-12. **Private model:** `models` and `audit` schemas, upload the Qwen weights, run `04_serving/01_private_llm_endpoint.py`
-    in the workspace; store the OpenAI key and run `04_serving/02_external_model_endpoint.py`.
+12. **Private model:** `models` and `audit` schemas, upload the Qwen weights, run `04_serving/01_private_llm_endpoint.ipynb`
+    in the workspace; store the OpenAI key and run `04_serving/02_external_model_endpoint.ipynb`.
 13. **Guardrails and telemetry, monitoring, compliance, MLflow lineage** (`05` → `06` → `07/02` → `07/01`).
 14. **Test users:** catalog grants, entitlements, warehouse access.
 15. **App:** `databricks bundle deploy`, then grant the app's service principal catalog access, membership of

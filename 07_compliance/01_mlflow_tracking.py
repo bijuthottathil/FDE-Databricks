@@ -29,7 +29,7 @@ mlflow.set_experiment("/Shared/hospital_chat/routing_and_prompts")
 # COMMAND ----------
 
 # These are the prompts actually in use — keep them in sync with their source:
-#   PHI      → PrivateLLM.predict in 04_serving/01_private_llm_endpoint.py (baked into the registered model)
+#   PHI      → PrivateLLM.predict in 04_serving/01_private_llm_endpoint.ipynb (baked into the registered model)
 #   general  → the system message in app/main.py and app/pipeline.py
 # Bump PROMPT_VERSION whenever either prompt changes; routing decisions below are tagged with it too.
 PROMPT_VERSION = "v2"

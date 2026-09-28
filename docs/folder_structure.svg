@@ -48,9 +48,9 @@
 <path d="M30 888 a12 12 0 0 1 12 -12 h696 a12 12 0 0 1 12 12 v42 h-720 z" fill="#2563eb"/>
 <text x="48" y="900" font-size="16" font-weight="700" fill="#ffffff" font-family="ui-monospace,Menlo,Consolas,monospace">04_serving/</text>
 <text x="48" y="919" font-size="12" fill="#ffffffcc">Step 4 - the two models</text>
-<text x="48" y="952" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">01_private_llm_endpoint.py</text>
+<text x="48" y="952" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">01_private_llm_endpoint.ipynb</text>
 <text x="330" y="952" font-size="12" fill="#475569">Registers Qwen2.5-1.5B; creates hospital-private-llm</text>
-<text x="48" y="976" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">02_external_model_endpoint.py</text>
+<text x="48" y="976" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace,Menlo,Consolas,monospace">02_external_model_endpoint.ipynb</text>
 <text x="330" y="976" font-size="12" fill="#475569">Creates hospital-external-openai (key from secret)</text>
 <rect x="778" y="92" width="720" height="100" rx="12" fill="#ffffff" stroke="#dc2626" stroke-width="1.6"/>
 <path d="M778 104 a12 12 0 0 1 12 -12 h696 a12 12 0 0 1 12 12 v42 h-720 z" fill="#dc2626"/>
